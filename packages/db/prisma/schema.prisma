@@ -1,0 +1,32 @@
+generator client {
+  provider = "prisma-client-js"
+  previewFeatures = ["postgresqlExtensions"]
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model MultipleChoiceQuestion {
+  name      String   @id
+  question  String
+  options   Json
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  answers   Answer[]
+}
+
+model Answer {
+  questionName String
+  modelName    String
+  optionType   String
+  options      Json
+  index        Int
+  text         String
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+  question     MultipleChoiceQuestion @relation(fields: [questionName], references: [name])
+
+  @@id([questionName, modelName, optionType, options, index])
+}

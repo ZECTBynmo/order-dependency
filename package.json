@@ -1,0 +1,31 @@
+{
+  "name": "deporder",
+  "private": true,
+  "scripts": {
+    "build": "turbo build",
+    "dev": "turbo dev",
+    "lint": "turbo lint",
+    "populate": "bun apps/cli/index.ts populate",
+    "evaluate": "bun apps/cli/index.ts evaluate",
+    "format": "prettier --write \"**/*.{ts,tsx,md,js,jsx,json,css}\"",
+    "format:check": "prettier --check \"**/*.{ts,tsx,md,js,jsx,json,css}\""
+  },
+  "devDependencies": {
+    "@trivago/prettier-plugin-sort-imports": "^4.3.0",
+    "prettier": "^3.2.5",
+    "prisma": "^5.22.0",
+    "turbo": "^2.3.0",
+    "typescript": "5.5.4"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "packageManager": "bun@1.1.10",
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "dependencies": {
+    "@prisma/client": "^5.22.0"
+  }
+}

@@ -1,0 +1,16 @@
+node_modules/
+.pnp
+.pnp.js
+
+# Build outputs
+.next/
+out/
+build
+dist
+
+# Cache
+.turbo
+
+# Misc
+.DS_Store
+*.pem

@@ -1,0 +1,16 @@
+<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Bar Chart -->
+  <path 
+    d="M4 14h3v7H4zM9 9h3v12H9zM14 4h3v17h-3z" 
+    fill="currentColor"
+  />
+  <!-- Magnifying Glass -->
+  <path 
+    d="M20.56 21.44a.75.75 0 0 1-1.06 0l-2.5-2.5a.75.75 0 0 1 1.06-1.06l2.5 2.5a.75.75 0 0 1 0 1.06z" 
+    fill="currentColor"
+  />
+  <path 
+    d="M15.5 17a4.5 4.5 0 1 1 0-9 4.5 4.5 0 0 1 0 9zm0-1.5a3 3 0 1 0 0-6 3 3 0 0 0 0 6z" 
+    fill="currentColor"
+  />
+</svg> 

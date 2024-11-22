@@ -1,0 +1,30 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --font-geist-sans: "GeistVF", sans-serif;
+    --font-geist-mono: "GeistMonoVF", monospace;
+    --radius: 0.5rem;
+  }
+
+  body {
+    @apply antialiased bg-white text-black dark:bg-black dark:text-white;
+  }
+}
+
+/* Font face declarations if needed */
+@font-face {
+  font-family: "GeistVF";
+  src: url("./fonts/GeistVF.woff") format("woff");
+  font-weight: 100 900;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "GeistMonoVF";
+  src: url("./fonts/GeistMonoVF.woff") format("woff");
+  font-weight: 100 900;
+  font-style: normal;
+}

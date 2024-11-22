@@ -1,0 +1,51 @@
+<svg viewBox="0 0 100 100" width="100" height="100" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Subtle Background Circle with Gradient -->
+  <circle cx="50" cy="50" r="45" fill="url(#backgroundGradient)" stroke="url(#strokeGradient)" stroke-width="2"/>
+  
+  <!-- Connected Nodes with Modern Gradient -->
+  <circle cx="30" cy="30" r="8" fill="url(#nodeGradient)"/>
+  <circle cx="50" cy="50" r="8" fill="url(#nodeGradient)"/>
+  <circle cx="70" cy="70" r="8" fill="url(#nodeGradient)"/>
+  
+  <!-- Smooth Connecting Lines -->
+  <path d="M35 35L45 45" stroke="url(#lineGradient)" stroke-width="2.5" stroke-linecap="round"/>
+  <path d="M55 55L65 65" stroke="url(#lineGradient)" stroke-width="2.5" stroke-linecap="round"/>
+  
+  <!-- Curved Flow Arrows -->
+  <path d="M30 22C40 22 45 27 45 37" stroke="url(#arrowGradient)" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+  <path d="M50 42C60 42 65 47 65 57" stroke="url(#arrowGradient)" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+  <path d="M70 62C80 62 85 67 85 77" stroke="url(#arrowGradient)" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+  
+  <!-- Modern Arrow heads -->
+  <path d="M45 37L42 35L47 34" fill="url(#arrowGradient)"/>
+  <path d="M65 57L62 55L67 54" fill="url(#arrowGradient)"/>
+  <path d="M85 77L82 75L87 74" fill="url(#arrowGradient)"/>
+
+  <!-- Gradient Definitions -->
+  <defs>
+    <linearGradient id="backgroundGradient" x1="0" y1="0" x2="100" y2="100">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="100%" stop-color="#f8fafc"/>
+    </linearGradient>
+    
+    <linearGradient id="strokeGradient" x1="0" y1="0" x2="100" y2="100">
+      <stop offset="0%" stop-color="#e2e8f0"/>
+      <stop offset="100%" stop-color="#cbd5e1"/>
+    </linearGradient>
+
+    <linearGradient id="nodeGradient" x1="0" y1="0" x2="100" y2="100">
+      <stop offset="0%" stop-color="#3b82f6"/>
+      <stop offset="100%" stop-color="#06b6d4"/>
+    </linearGradient>
+
+    <linearGradient id="lineGradient" x1="0" y1="0" x2="100" y2="100">
+      <stop offset="0%" stop-color="#3b82f6"/>
+      <stop offset="100%" stop-color="#06b6d4"/>
+    </linearGradient>
+
+    <linearGradient id="arrowGradient" x1="0" y1="0" x2="100" y2="100">
+      <stop offset="0%" stop-color="#ef4444"/>
+      <stop offset="100%" stop-color="#f43f5e"/>
+    </linearGradient>
+  </defs>
+</svg> 
