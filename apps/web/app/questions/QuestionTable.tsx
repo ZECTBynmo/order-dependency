@@ -13,8 +13,10 @@ export function QuestionTable({ questions }: QuestionTableProps) {
     <div className="space-y-3">
       <div className="grid grid-cols-12 p-4 gap-4 text-sm text-primary/70">
         <div className="col-span-3 font-medium">Name</div>
-        <div className="col-span-4 font-medium">Question</div>
-        <div className="col-span-5 pl-3 font-medium">Options</div>
+        <div className="col-span-3 font-medium">Question</div>
+        <div className="col-span-1 font-medium">Type</div>
+        <div className="col-span-2 font-medium">Correct Answer</div>
+        <div className="col-span-3 pl-3 font-medium">Options</div>
       </div>
 
       {questions.map((question, idx) => (
@@ -30,8 +32,10 @@ export function QuestionTable({ questions }: QuestionTableProps) {
           <Card>
             <div className="grid grid-cols-12 p-4 gap-4 group hover:bg-primary/20 hover:shadow-lg transition-all duration-200 cursor-pointer">
               <div className="col-span-3 font-medium text-foreground/90">{question.name}</div>
-              <div className="col-span-4 text-foreground/80">{question.question}</div>
-              <div className="col-span-5">
+              <div className="col-span-3 text-foreground/80">{question.question}</div>
+              <div className="col-span-1 text-foreground/80">{question.type}</div>
+              <div className="col-span-2 text-foreground/80">{question.correctAnswer}</div>
+              <div className="col-span-3">
                 <ul className="space-y-2.5">
                   {(question.options as string[]).map((option, index) => (
                     <li key={index}>

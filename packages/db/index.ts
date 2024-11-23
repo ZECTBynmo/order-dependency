@@ -9,3 +9,5 @@ export type { MultipleChoiceQuestion, Answer }
 
 export type NewMultipleChoiceQuestion = Prisma.MultipleChoiceQuestionCreateInput
 export type NewAnswer = Prisma.AnswerCreateInput
+
+export * from "./queries"

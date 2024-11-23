@@ -49,4 +49,12 @@ Evaluation and insertion into postgres happens in app/cli
 
 # AI Tools
 
-Instructor-js is an excellent tool written by a friend of mine. It sets up a common interface to multiple LLMs, and allows you to clearly define output schemas using zod.
+Instructor-js is my preferred way to interact with LLMs, an excellent tool written by a friend of mine (a typescript clone of python instructor). It sets up a common interface to multiple LLMs, and allows you to clearly define output schemas using zod.
+
+# The Order Dependency Problem
+
+The app UI shows the details of my full analysis, but briefly here:
+
+I created a set of 5 multiple choice questions. Some with clear correct answers, and some with ambiguous opinion-based answers. The problem is most likely to be visible with ambiguous questions, so it was important to have both types, and be able to show the difference.
+
+I set a high temperature (0.9) to try to emphasize result variability.

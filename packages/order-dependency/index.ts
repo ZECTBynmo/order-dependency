@@ -30,9 +30,14 @@ export async function evaluateOrderDependency({
     shiftOptions(originalOptions, 3),
   ]
 
-  for (const options of optionSeries) {
-    const shiftedQuestion: Question = { name: question.name, question: question.question, options }
-    await getAnswers(shiftedQuestion, nEvals, optionPrefixes, model)
+  for (const index in optionSeries) {
+    const options = optionSeries[index]
+    const shiftedQuestion: Question = {
+      name: question.name,
+      question: question.question,
+      options,
+    }
+    await getAnswers(shiftedQuestion, nEvals, optionPrefixes, Number(index), model)
   }
 }
 
@@ -40,17 +45,19 @@ export async function getAnswers(
   question: Question,
   nEvals: number,
   optionPrefixes: OptionPrefixes,
+  optionIndex: number,
   model: ModelName
 ) {
+  const MAX_RETRIES = 10
   // Ask the same question nEvals times so we can measure stability
   const rawAnswers = await Promise.all(
     Array.from({ length: nEvals }, async () => {
-      // Retry up to 3 times (for llama, because JSON output is unreliable)
-      for (let i = 0; i < 3; i++) {
+      // Retry a few times (for llama, because JSON output is unreliable)
+      for (let i = 0; i < MAX_RETRIES; i++) {
         try {
           return await answerQuestion(question, optionPrefixes.prefixes, model)
         } catch (error) {
-          if (i === 2) throw error
+          if (i === MAX_RETRIES - 1) throw error
           console.log(`Attempt ${i + 1} failed, retrying...`)
         }
       }
@@ -70,6 +77,7 @@ export async function getAnswers(
       modelName: model,
       optionType: optionPrefixes.name,
       options: question.options,
+      optionIndex,
       text: rawAnswer,
       index: index,
     }

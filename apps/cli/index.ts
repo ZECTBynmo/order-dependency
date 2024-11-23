@@ -15,6 +15,8 @@ async function populateQuestions() {
         },
         create: {
           name: question.name,
+          type: question.type,
+          correctAnswer: question.correctAnswer,
           question: question.question,
           options: question.options,
         },
@@ -38,7 +40,7 @@ async function evaluate() {
     { name: "Bullet Points", prefixes: ["- ", "- ", "- ", "- "] },
   ]
 
-  const NUM_EVALS_PER_TEST = 5
+  const NUM_EVALS_PER_TEST = 3
 
   for (const question of questions) {
     for (const model of models) {

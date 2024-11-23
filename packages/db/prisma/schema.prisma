@@ -12,6 +12,8 @@ model MultipleChoiceQuestion {
   name      String   @id
   question  String
   options   Json
+  type      String
+  correctAnswer String?
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
   answers   Answer[]
@@ -22,6 +24,7 @@ model Answer {
   modelName    String
   optionType   String
   options      Json
+  optionIndex  Int
   index        Int
   text         String
   createdAt    DateTime @default(now())
