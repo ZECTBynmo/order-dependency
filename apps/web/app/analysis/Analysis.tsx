@@ -99,7 +99,7 @@ export function AnalysisCharts({ correctAnswerByOptionIndex }: AnalysisChartsPro
       </div>
 
       <div>
-        <h2 className="text-2xl font-bold mb-4">Let's get into the data The Data</h2>
+        <h2 className="text-2xl font-bold mb-4">Let's get into the data the Data</h2>
 
         <p className="text-muted-foreground mb-6">
           For the questions with a specific correct answer, we can see that the models got the right
