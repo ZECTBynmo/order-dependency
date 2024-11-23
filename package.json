@@ -8,7 +8,8 @@
     "populate": "bun apps/cli/index.ts populate",
     "evaluate": "bun apps/cli/index.ts evaluate",
     "format": "prettier --write \"**/*.{ts,tsx,md,js,jsx,json,css}\"",
-    "format:check": "prettier --check \"**/*.{ts,tsx,md,js,jsx,json,css}\""
+    "format:check": "prettier --check \"**/*.{ts,tsx,md,js,jsx,json,css}\"",
+    "postinstall": "cd packages/db && prisma generate"
   },
   "devDependencies": {
     "@trivago/prettier-plugin-sort-imports": "^4.3.0",
