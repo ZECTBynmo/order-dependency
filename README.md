@@ -45,7 +45,7 @@ Interactions with LLMs happens in packages/ai
 
 Order dependency mechanics happen in packages/order-dependency
 
-Evaluation and insertion into postgres happens in app/cli
+Evaluation and insertion into postgres happens in apps/cli
 
 # AI Tools
 
