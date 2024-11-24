@@ -1,17 +1,15 @@
 {
   "name": "@repo/ai",
-  "module": "index.ts",
-  "type": "module",
+  "version": "0.0.0",
+  "private": true,
+  "main": "./index.ts",
+  "types": "./index.ts",
+  "scripts": {
+    "lint": "eslint . --max-warnings 0",
+    "type-check": "tsc --noEmit"
+  },
   "devDependencies": {
-    "@types/bun": "latest",
-    "@repo/db": "*"
-  },
-  "peerDependencies": {
-    "typescript": "^5.0.0"
-  },
-  "dependencies": {
-    "@instructor-ai/instructor": "^1.5.0",
-    "openai": "^4.73.0",
-    "zod": "^3.23.8"
+    "@repo/typescript-config": "*",
+    "typescript": "^5.5.4"
   }
 }

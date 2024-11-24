@@ -42,10 +42,8 @@ export function AnalysisCharts({ correctAnswerByOptionIndex }: AnalysisChartsPro
 
   return (
     <div className="space-y-16">
-      <div className="flex items-center justify-between">
-        <h2 className="text-2xl font-bold">The Order Dependency of LLMs</h2>
-      </div>
-      <div>
+      <div className="items-center justify-between">
+        <h2 className="text-2xl mb-4 font-bold">The Order Dependency of LLMs</h2>
         <p className="mb-5">
           LLMs process inputs as sequences of tokens. Each token is passed through attention layers
           that calculate how it interacts with other tokens in the sequence, building up the overall
@@ -55,8 +53,12 @@ export function AnalysisCharts({ correctAnswerByOptionIndex }: AnalysisChartsPro
           where information presented earlier in a prompt may carry more weight in guiding the
           model's response.
         </p>
+      </div>
+
+      <div>
+        <h2 className="text-2xl font-bold mb-4">Let's dig in</h2>
         <p className="mb-5">
-          To explore this, we've asked several LLMs to answer{" "}
+          To explore this, we've asked Llama 3.1, GPT-4o Mini, and GPT-4o to answer{" "}
           <a className="underline" href="/questions">
             15 multiple choice questions
           </a>
@@ -82,24 +84,23 @@ export function AnalysisCharts({ correctAnswerByOptionIndex }: AnalysisChartsPro
           To get more statistical significance, we asked each question 3 times for each combination
           of variables. Amounting to a total of 1620 answers.
         </p>
-        <p className="text-gray-400 italic">Let's dig into some data to learn more</p>
       </div>
 
       <div>
         <h2 className="text-2xl font-bold mb-4">What do we expect to see?</h2>
         <p className="text-muted-foreground mb-6">
-          In short: we expect to see that the models are most accurate when the correct answer is in
-          the first position.
+          In short: we expect to see a bias towards choosing the first option.
         </p>
 
         <p className="text-muted-foreground mb-6">
-          We may see some variance in accuracy based on the model and option type, but the correct
-          answer should be in the first position most often.
+          For questions with a specific correct answer, we expect to see LLMs get the correct answer
+          most often when the correct answer is in the first position. For opinion-based questions,
+          we expect to see the LLM choose the first option most often.
         </p>
       </div>
 
       <div>
-        <h2 className="text-2xl font-bold mb-4">Let's get into the data the Data</h2>
+        <h2 className="text-2xl font-bold mb-4">Fact-based Questions</h2>
 
         <p className="text-muted-foreground mb-6">
           For the questions with a specific correct answer, we can see that the models got the right
@@ -107,7 +108,7 @@ export function AnalysisCharts({ correctAnswerByOptionIndex }: AnalysisChartsPro
           we expected:
         </p>
 
-        <div className="h-[300px] w-full mb-8">
+        <div className="h-[400px] w-full mb-8">
           <ResponsiveContainer width="100%" height="100%">
             <BarChart
               data={correctAnswerByOptionIndex.filter(
@@ -125,10 +126,12 @@ export function AnalysisCharts({ correctAnswerByOptionIndex }: AnalysisChartsPro
                 domain={[0, 100]}
               />
               <Tooltip
-                formatter={(value: number) => `${value.toFixed(1)}%`}
-                labelFormatter={(label) => `Position ${label + 1}`}
+                formatter={(value: string | number | (string | number)[]) =>
+                  `${Number(value).toFixed(1)}%`
+                }
+                labelFormatter={(label) => `Position ${Number(label) + 1}`}
               />
-              <Legend verticalAlign="top" offset={10} />
+              <Legend verticalAlign="top" />
               <Bar dataKey="correctAnswerPercentage" name="Percent Correct" fill="#82ca9d" />
             </BarChart>
           </ResponsiveContainer>
@@ -162,10 +165,12 @@ export function AnalysisCharts({ correctAnswerByOptionIndex }: AnalysisChartsPro
                   domain={[0, 100]}
                 />
                 <Tooltip
-                  formatter={(value: number) => `${value.toFixed(1)}%`}
-                  labelFormatter={(label) => `Position ${label + 1}`}
+                  formatter={(value: string | number | (string | number)[]) =>
+                    `${Number(value).toFixed(1)}%`
+                  }
+                  labelFormatter={(label) => `Position ${Number(label) + 1}`}
                 />
-                <Legend verticalAlign="top" offset={10} />
+                <Legend verticalAlign="top" />
                 <Bar dataKey="correctAnswerPercentage" name="Percent Correct" fill="#82ca9d" />
               </BarChart>
             </ResponsiveContainer>
@@ -174,7 +179,7 @@ export function AnalysisCharts({ correctAnswerByOptionIndex }: AnalysisChartsPro
             <div className="grid grid-cols-1 gap-4 mt-10 mr-5 w-48 bg-gray-900 p-4 rounded-lg">
               <Select
                 defaultValue={selectedModel}
-                onValueChange={(value) => setSelectedModel(value as ModelName | "all")}
+                onValueChange={(value: string) => setSelectedModel(value as ModelName | "all")}
               >
                 <div className="text-sm ml-3">Model</div>
                 <SelectTrigger className="w-full">
@@ -189,7 +194,9 @@ export function AnalysisCharts({ correctAnswerByOptionIndex }: AnalysisChartsPro
               </Select>
               <Select
                 defaultValue={selectedOptionType}
-                onValueChange={(value) => setSelectedOptionType(value as OptionType | "all")}
+                onValueChange={(value: string) =>
+                  setSelectedOptionType(value as OptionType | "all")
+                }
               >
                 <div className="text-sm ml-3">Option Type</div>
                 <SelectTrigger className="w-full">
@@ -265,6 +272,20 @@ export function AnalysisCharts({ correctAnswerByOptionIndex }: AnalysisChartsPro
           a given question across option orders. This is similar to the accuracy results, except
           could be applied to any question, not just those with a specific correct answer. I again
           omitted them from this writeup.
+        </p>
+
+        <p className="text-muted-foreground mb-6">
+          GPT got my questions 100% correct, which I wasn't happy with. Doing some further reading,
+          it's likely possible to generate questions that are calculably harder for LLMs to answer.
+          See papers like{" "}
+          <a className="underline" href="https://arxiv.org/pdf/2402.17916">
+            this one
+          </a>{" "}
+          and{" "}
+          <a className="underline" href="https://arxiv.org/pdf/2410.05229">
+            this one
+          </a>
+          .
         </p>
 
         <p className="text-muted-foreground mb-6">

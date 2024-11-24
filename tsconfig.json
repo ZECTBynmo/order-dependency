@@ -4,7 +4,7 @@
     "forceConsistentCasingInFileNames": true,
     "baseUrl": ".",
     "paths": {
-      "@repo/*": ["packages/*"]
+      "@repo/*": ["packages/*/index.ts"]
     }
   }
 }
