@@ -60,3 +60,7 @@ The app UI shows the details of my full analysis. You can view it [here](https:/
 I created a set of 5 multiple choice questions. Some with clear correct answers, and some with ambiguous opinion-based answers. The problem is most likely to be visible with ambiguous questions, so it was important to have both types, and be able to show the difference.
 
 I set a high temperature (0.9) to try to emphasize result variability. My hope was that if order bias raised the probabilities of non-correct answers, high temperature would cause them to be selected more. That may have worked for Llama, but didn't affect GPT results.
+
+# Raw Data
+
+I included a raw dump of the questions and answers in questions.csv and answers.csv
