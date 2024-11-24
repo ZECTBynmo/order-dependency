@@ -55,7 +55,7 @@ The OpenAI npm package is used to interface with GPT as normal, and it's also us
 
 # The Order Dependency Problem
 
-The app UI shows the details of my full analysis. You can view it [here](https://order-dependency-web.vercel.app/) but briefly here:
+The app UI shows the details of my full analysis. You can view it [here](https://order-dependency-web.vercel.app/) but briefly in the readme:
 
 I created a set of 5 multiple choice questions. Some with clear correct answers, and some with ambiguous opinion-based answers. The problem is most likely to be visible with ambiguous questions, so it was important to have both types, and be able to show the difference.
 
