@@ -1,0 +1,16 @@
+name,question,options,createdAt,updatedAt,correctAnswer,type
+AI Term,"What does the term 'AI' most commonly refer to?","[""Artificial Intelligence"", ""Adobe Illustrator"", ""Allen Iverson"", ""Air India""]",2024-11-23 06:19:07.459,2024-11-23 06:19:07.459,Artificial Intelligence,fact
+Cat/Dog/Mammal,"If all dogs are mammals and some mammals are cats, which of the following is true?","[""All cats are mammals"", ""Some dogs are cats"", ""All mammals are dogs"", ""Some cats are reptiles""]",2024-11-23 06:19:07.566,2024-11-23 06:19:07.566,All cats are mammals,fact
+DNA Structure,What is the basic structure of DNA?,"[""Single helix"", ""Triple helix"", ""Double helix"", ""Circular""]",2024-11-23 06:19:08.196,2024-11-23 06:19:08.196,Double helix,fact
+Favorite Movie,Which of these is the best movie of all time?,"[""The Shawshank Redemption"", ""The Godfather"", ""The Dark Knight"", ""Pulp Fiction""]",2024-11-23 06:19:07.045,2024-11-23 06:19:07.045,,opinion
+First Computer,Which was the first general-purpose electronic computer?,"[""UNIVAC"", ""ENIAC"", ""EDVAC"", ""Colossus""]",2024-11-23 06:19:07.773,2024-11-23 06:19:07.773,ENIAC,fact
+Future Skills,Which skill will be most valuable in the future job market?,"[""AI/ML expertise"", ""Data analysis"", ""Emotional intelligence"", ""Creative thinking""]",2024-11-23 06:19:08.31,2024-11-23 06:19:08.31,,opinion
+Human Body,How many bones are there in an adult human body?,"[""206"", ""208"", ""196"", ""214""]",2024-11-23 06:19:08.639,2024-11-23 06:19:08.639,206,fact
+Innovation Priority,Which technological innovation should society prioritize the most?,"[""Renewable energy solutions"", ""Space exploration"", ""Medical breakthroughs"", ""Quantum computing""]",2024-11-23 06:19:08.53,2024-11-23 06:19:08.53,,opinion
+Largest Planet,What is the largest planet in our solar system?,"[""Earth"", ""Mars"", ""Jupiter"", ""Saturn""]",2024-11-23 06:19:07.229,2024-11-23 06:19:07.229,Jupiter,fact
+Most Beneficial Policy,Which policy is most beneficial for society?,"[""Universal healthcare"", ""Universal basic income"", ""Improved public education"", ""Climate change mitigation""]",2024-11-23 06:19:07.349,2024-11-23 06:19:07.349,,opinion
+Periodic Table,How many elements are in the modern periodic table?,"[""92"", ""108"", ""118"", ""120""]",2024-11-23 06:19:07.98,2024-11-23 06:19:07.98,118,fact
+Programming Language,Which programming language is the most enjoyable to work with?,"[""Python"", ""JavaScript"", ""Rust"", ""Go""]",2024-11-23 06:19:07.672,2024-11-23 06:19:07.672,,opinion
+Quantum Bit,What is the basic unit of information in quantum computing?,"[""Bit"", ""Byte"", ""Qubit"", ""Quantum byte""]",2024-11-23 06:19:08.428,2024-11-23 06:19:08.428,Qubit,fact
+Transportation Future,Which transportation technology will have the biggest impact in the next decade?,"[""Electric vehicles"", ""Hyperloop"", ""Flying cars"", ""Self-driving vehicles""]",2024-11-23 06:19:08.089,2024-11-23 06:19:08.089,,opinion
+Work Environment,"What's the most important factor in a work environment?","[""Salary"", ""Work-life balance"", ""Learning opportunities"", ""Company culture""]",2024-11-23 06:19:07.88,2024-11-23 06:19:07.88,,opinion
