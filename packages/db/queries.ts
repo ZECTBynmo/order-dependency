@@ -1,6 +1,6 @@
 import { dbClient } from "."
 
-type AccuracyByOptionIndex = {
+export type AccuracyByOptionIndex = {
   position: number
   modelName: "gpt4o" | "gpt4mini" | "llama" | "all"
   optionType: "Numbered Options" | "Lettered Options" | "Bullet Points" | "all"
@@ -191,15 +191,22 @@ export async function getCorrectAnswerByOptionIndex() {
   }))
 }
 
-export interface OpinionsByOptionIndex extends AccuracyByOptionIndex {
+export interface OpinionsByOptionIndex {
   modelName: "gpt4o" | "gpt4mini" | "llama" | "all"
   optionType: "Numbered Options" | "Lettered Options" | "Bullet Points" | "all"
   optionPosition: number
   matchCount: number
 }
 
-export async function opinionsByOptionIndex() {
-  const results = await dbClient.$queryRaw<OpinionsByOptionIndex[]>`
+interface RawOpinionsByOptionIndex {
+  modelName: string
+  optionType: string
+  optionposition: number
+  matchcount: string
+}
+
+export async function opinionsByOptionIndex(): Promise<OpinionsByOptionIndex[]> {
+  const results = await dbClient.$queryRaw<RawOpinionsByOptionIndex[]>`
     WITH numbers AS (
       SELECT 0 as idx UNION ALL 
       SELECT 1 UNION ALL 
@@ -210,32 +217,44 @@ export async function opinionsByOptionIndex() {
       SELECT 
         a."modelName",
         a."optionType",
-        n.idx as option_position,
-        COUNT(*) as match_count
-    FROM numbers n
-    LEFT JOIN "Answer" a ON trim(both '"' from (a.options->n.idx)::text) = a.text
-    JOIN "MultipleChoiceQuestion" q ON a."questionName" = q.name
-    WHERE q.type = 'opinion'
-    GROUP BY a."modelName", a."optionType", n.idx
+        n.idx as optionPosition,
+        COUNT(*) as matchCount
+      FROM numbers n
+      LEFT JOIN "Answer" a ON trim(both '"' from (a.options->n.idx)::text) = a.text
+      JOIN "MultipleChoiceQuestion" q ON a."questionName" = q.name
+      WHERE q.type = 'opinion'
+      GROUP BY a."modelName", a."optionType", n.idx
     ),
     model_counts AS (
       SELECT 
         a."modelName",
         'all' as "optionType",
-        n.idx as option_position,
-        COUNT(*) as match_count
+        n.idx as optionPosition,
+        COUNT(*) as matchCount
       FROM numbers n
       LEFT JOIN "Answer" a ON trim(both '"' from (a.options->n.idx)::text) = a.text
       JOIN "MultipleChoiceQuestion" q ON a."questionName" = q.name
       WHERE q.type = 'opinion'
       GROUP BY a."modelName", n.idx
     ),
+    optiontype_counts AS (
+      SELECT 
+        'all' as "modelName",
+        a."optionType",
+        n.idx as optionPosition,
+        COUNT(*) as matchCount
+      FROM numbers n
+      LEFT JOIN "Answer" a ON trim(both '"' from (a.options->n.idx)::text) = a.text
+      JOIN "MultipleChoiceQuestion" q ON a."questionName" = q.name
+      WHERE q.type = 'opinion'
+      GROUP BY a."optionType", n.idx
+    ),
     all_counts AS (
       SELECT 
         'all' as "modelName",
         'all' as "optionType",
-        n.idx as option_position,
-        COUNT(*) as match_count
+        n.idx as optionPosition,
+        COUNT(*) as matchCount
       FROM numbers n
       LEFT JOIN "Answer" a ON trim(both '"' from (a.options->n.idx)::text) = a.text
       JOIN "MultipleChoiceQuestion" q ON a."questionName" = q.name
@@ -246,9 +265,16 @@ export async function opinionsByOptionIndex() {
     UNION ALL
     SELECT * FROM model_counts
     UNION ALL
+    SELECT * FROM optiontype_counts
+    UNION ALL
     SELECT * FROM all_counts
-    ORDER BY "modelName", "optionType", option_position;
+    ORDER BY "modelName", "optionType", optionPosition;
   `
 
-  return results
+  return results.map((row) => ({
+    modelName: row.modelName as "gpt4o" | "gpt4mini" | "llama" | "all",
+    optionType: row.optionType as "Numbered Options" | "Lettered Options" | "Bullet Points" | "all",
+    optionPosition: Number(row.optionposition),
+    matchCount: Number(row.matchcount),
+  }))
 }

@@ -1,4 +1,4 @@
-import { Answer, dbClient, getCorrectAnswerByOptionIndex } from "@repo/db"
+import { getCorrectAnswerByOptionIndex, opinionsByOptionIndex } from "@repo/db"
 import {
   Breadcrumb,
   BreadcrumbItem,
@@ -10,9 +10,8 @@ import {
 import { AnalysisCharts } from "./Analysis"
 
 export default async function AnalysisPage() {
-  const questions = await dbClient.multipleChoiceQuestion.findMany()
-  const answers = await dbClient.answer.findMany()
   const correctAnswerByOptionIndex = await getCorrectAnswerByOptionIndex()
+  const opinionData = await opinionsByOptionIndex()
 
   return (
     <div className="container mx-auto py-10 p-5 max-w-6xl">
@@ -30,7 +29,10 @@ export default async function AnalysisPage() {
         </BreadcrumbList>
       </Breadcrumb>
 
-      <AnalysisCharts correctAnswerByOptionIndex={correctAnswerByOptionIndex} />
+      <AnalysisCharts
+        correctAnswerByOptionIndex={correctAnswerByOptionIndex}
+        opinionData={opinionData}
+      />
     </div>
   )
 }

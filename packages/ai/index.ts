@@ -8,7 +8,7 @@ export interface Question {
   options: string[]
 }
 
-export type ModelName = "gpt4mini" | "gpt4o" | "llama"
+export type ModelName = "llama" | "gpt4mini" | "gpt4o"
 
 const oai = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY,
